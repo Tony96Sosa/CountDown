@@ -1,29 +1,39 @@
-// This is an example with default parameters
+const getRemainTime = deadline => {
+    let now = new Date(),
+        remainTime = (new Date(deadline) - now + 1000) / 1000,
+        remainSeconds = ('0'+Math.floor(remainTime % 60)).slice(-2),
+        remainMinutes = ('0'+Math.floor((remainTime / 60) % 60)).slice(-2),
+        remainHours = ('0'+Math.floor((remainTime / 3600) % 24)).slice(-2),
+        remainDays = Math.floor(remainTime / (3600 * 24));
+    return {
+        remainTime,
+        remainSeconds,
+        remainMinutes,
+        remainHours,
+        remainDays,
+    }
+};
 
-simplyCountdown('.countDown', {
-    year: 2019, // required
-    month: 6, // required
-    day: 28, // required
-    hours: 0, // Default is 0 [0-23] integer
-    minutes: 0, // Default is 0 [0-59] integer
-    seconds: 0, // Default is 0 [0-59] integer
-    words: { //words displayed into the countdown
-        days: 'day',
-        hours: 'hour',
-        minutes: 'minute',
-        seconds: 'second',
-        pluralLetter: 's'
-    },
-    plural: true, //use plurals
-    inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
-    inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
-    // in case of inline set to false
-    enableUtc: true, //Use UTC as default
-    onEnd: function() { return; }, //Callback on countdown end, put your own function here
-    refresh: 1000, // default refresh every 1s
-    sectionClass: 'simply-section', //section css class
-    amountClass: 'simply-amount', // amount css class
-    wordClass: 'simply-word', // word css class
-    zeroPad: false,
-    countUp: false
+// console.log(getRemainTime('Aug 20 2020 10:10:24 GMT-0300'));
+
+const countDown = (deadline, element, finalMessage ) => {
+    const elem = document.querySelector(element);
+
+    const timerUpdate = setInterval( () => {
+        let tiempo = getRemainTime(deadline);
+        elem.innerHTML = `
+            <div class="dias">${tiempo.remainDays}</div>
+            <div class="horas">${tiempo.remainHours}</div>
+            <div class="minutos">${tiempo.remainMinutes}</div>
+            <div class="segundos">${tiempo.remainSeconds}</div>
+        `;
+        if( tiempo.remainTime <= 1){
+            clearInterval(timerUpdate);
+            elem.innerHTML = finalMessage;
+        }
+    }, 1000);
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+    countDown('Dec 31 2020 23:59:59 GMT-0300',".countdown","Feliz Año Nuevo");
 });

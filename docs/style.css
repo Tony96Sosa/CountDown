@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-image: url(./img/fondo-new-year.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title{
+    margin-top: 80px;
+    letter-spacing: 5px;
+    font-weight: 300;
+    font-size: 30px;
+    color: #fff;
+}
+.year{
+    display: block;
+    text-align: center;
+    font-size: 150px;
+    line-height: 140px;
+    color: #fff;
+}
+.countdown{
+    display: flex;
+    margin-top: 50px;
+}
+.countdown div{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    background-color: #333;
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0 15px;
+}
+.countdown div::before{
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background-color: #e6e64a;
+    color: #333;
+    line-height: 35px;
+    font-size: 0.35em;
+    font-weight: 300;
+}
+.countdown .dias::before{
+    content: 'Dias';
+}
+.countdown .horas::before{
+    content: 'Horas';
+}
+.countdown .minutos::before{
+    content: 'Minutos';
+}
+.countdown .segundos::before{
+    content: 'Segundos';
+}
+/*-------------Responsive entre 0 y 600 pixeles-------------*/
+@media screen and (max-width: 600px){
+    .title{
+        width: 98%;
+        margin-top: 30px;
+        font-size: 25px;
+        text-align: center;
+        line-height: 30px;
+    }
+    .year{
+        font-size: 70px;
+        line-height: 80px;
+    }
+    .countdown{
+        width: 98%;
+        display: flex;
+        margin-top: 0;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .countdown div{
+        width: 125px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 25px;
+        margin: 35px 5px 0;
+    }
+    .countdown div::before{
+        height: 35px;
+        line-height: 35px;
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
