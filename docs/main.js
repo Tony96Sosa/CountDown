@@ -14,8 +14,6 @@ const getRemainTime = deadline => {
     }
 };
 
-// console.log(getRemainTime('Aug 20 2020 10:10:24 GMT-0300'));
-
 const countDown = (deadline, element, finalMessage ) => {
     const elem = document.querySelector(element);
 
